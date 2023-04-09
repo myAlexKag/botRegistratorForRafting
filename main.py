@@ -1,11 +1,16 @@
 # Подключение внешних модулей
+import logging
+
+# Импорт переменных
 from aiogram import Bot, Dispatcher, executor, types
 
 # Тут будут локальные импорты
 from settings import API_TOKEN
 
-print(API_TOKEN)
+#Настройка лога
+logger = logging.getLogger(__name__)
 
+logger.info('Программа запущена, начинаем инициализацию')
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
@@ -24,5 +29,6 @@ async def echo(
     await message.answer(message.text)
 
 
+logger.info('Запущен главный цикл')
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
